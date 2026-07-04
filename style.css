@@ -1,0 +1,119 @@
+body { margin: 0; display: flex; justify-content: center; align-items: center; height: 100vh; background: #eee; }
+
+#game-container {
+    width: 600px; height: 200px; position: relative; overflow: hidden;
+    background-color: #87CEFA; border: 2px solid #333;
+}
+
+/* Mặt đất màu vàng */
+#ground {
+    width: 100%; height: 30px; background-color: #D2B48C;
+    position: absolute; bottom: 0; border-top: 2px solid #8B4513;
+}
+
+/* Mây (đã tách nền) - trôi đơn lẻ */
+#clouds {
+    width: 100px; height: 50px; position: absolute; top: 30px;
+    background-image: url('may.png'); background-size: contain;
+    background-repeat: no-repeat; animation: cloud-move 15s infinite linear;
+}
+
+/* Khủng long: Đứng trên mặt đất (bottom: 20px) */
+#dino { 
+    width: 60px; height: 60px; position: absolute; bottom: 20px; left: 50px; 
+    background-image: url('dino.png'); background-size: contain; background-repeat: no-repeat; 
+}
+
+/* Cây: Đứng trên mặt đất (bottom: 20px) */
+#cactus { 
+    width: 50px; height: 40px; position: absolute; bottom: 20px; left: 600px; 
+    background-size: contain; background-repeat: no-repeat; 
+}
+
+.tree1 { background-image: url('tree1.png'); }
+.tree2 { background-image: url('tree2.png'); }
+
+/* Animations */
+@keyframes cloud-move { 0% { left: 600px; } 100% { left: -100px; } }
+@keyframes jump-anim { 0% { bottom: 20px; } 30% { bottom: 120px; } 100% { bottom: 20px; } }
+@keyframes cactus-anim { 0% { left: 600px; } 100% { left: -60px; } }
+
+.jump { animation: jump-anim 0.5s linear; }
+.cactus-move { animation: cactus-anim 1.5s infinite linear; }
+#score { position: absolute; top: 10px; right: 20px; color: white; font-weight: bold; font-family: Arial; }
+
+/* Ép khung game làm gốc tọa độ cố định */
+#game-container {
+    position: relative;
+    overflow: hidden;
+    margin: 50px auto; /* Căn giữa hộp game ra giữa màn hình trình duyệt */
+}
+
+/* Định vị bảng Game Over luôn nằm trung tâm hộp game, không bị bay ra ngoài */
+#game-over-screen {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 100;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.98);
+    padding: 20px 30px;
+    border: 3px solid #333;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    font-family: sans-serif;
+    width: 280px;
+}
+
+#game-over-screen h2 {
+    margin: 0 0 5px 0;
+    color: #d9534f;
+    font-size: 22px;
+}
+
+#game-over-screen p {
+    font-weight: bold;
+    margin: 5px 0 15px 0;
+    color: #444;
+}
+
+.rating-box {
+    background: #f9f9f9;
+    padding: 8px;
+    border-radius: 6px;
+    border: 1px solid #ddd;
+    margin-bottom: 12px;
+}
+
+.rating-box label {
+    font-size: 12px;
+    font-weight: bold;
+    display: block;
+    margin-bottom: 4px;
+}
+
+.rating-box select {
+    width: 100%;
+    padding: 5px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+}
+
+.button-group {
+    display: flex;
+    justify-content: space-between;
+}
+
+#game-over-screen button {
+    padding: 8px 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    flex: 1;
+    margin: 0 4px;
+}
+
+.btn-submit { background: #4CAF50; color: white; }
+.btn-restart { background: #2196F3; color: white; }
